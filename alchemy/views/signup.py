@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.utils.html import strip_tags
 from django.contrib.auth.models import User
 from django.db import IntegrityError
+from django.http import HttpResponseRedirect
 
 def signup(request):	
 	if request.method == "POST" and 'signup-email' in request.POST:
@@ -23,6 +24,6 @@ def signup(request):
 			return render(request, 'signup.html', {'error':'Email already exists'})
 			
 		if user:
-			return render(request, 'index.html')
+			return HttpResponseRedirect('/')
 			
 	return render(request, 'signup.html')
