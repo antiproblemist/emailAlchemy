@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block title %}Welcome to emailAlchemy{% endblock %}
+
+{% block auth_buttons %}
+	{% if is_authenticated %}
+		<a class="btn btn-default" href="/logout">Logout</a>
+	{% else %}
+		<a class="btn btn-default" href="/signup">Signup</a>
+	{% endif %}
+{% endblock %}
+
+{% block body-content %}
+<div class="container">
+	<div clas="row">
+		<div class="col-md-6">
+			<div class="jumbotron">
+			  <h1>Say no to Spam!</h1>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<form class="form-horizontal" method="POST" action="">{% csrf_token %}
+			  <fieldset>
+				<legend>Login</legend>
+				{% if error %}
+				<div class="form-group">
+				  <h5><span class="label" style="color: red;"> {{error}} </span></h5>
+				</div>
+				{% endif %}
+				<div class="form-group">
+				  <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+				  <div class="col-lg-10">
+					<input vk_1cd4d="subscribed" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;" class="form-control" id="inputEmail" placeholder="Email" type="text" name="login-email">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+				  <div class="col-lg-10">
+					<input vk_1cd4d="subscribed" style="background-image: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAASCAYAAABSO15qAAAAAXNSR0IArs4c6QAAALZJREFUOBFjYKAANDQ0rGWiQD9IqzgL0BQ3IKMXiB8AcSKQ/waIrYDsKUD8Fir2pKmpSf/fv3+zgPxfzMzMSbW1tbeBbAaQC+b+//9fB4h9gOwikCAQTAPyDYHYBciuBQkANfcB+WZAbPP37992kBgIUOoFBiZGRsYkIL4ExJvZ2NhAXmFgYmLKBPLPAfFuFhaWJpAYEBQC+SeA+BDQC5UQIQpJYFgdodQLLyh0w6j20RCgUggAAEREPpKMfaEsAAAAAElFTkSuQmCC&quot;); background-repeat: no-repeat; background-attachment: scroll; background-size: 16px 18px; background-position: 98% 50%; cursor: pointer;" class="form-control" id="inputPassword" placeholder="Password" type="password" name="login-password">
+
+				  </div>
+				</div>
+				
+				<div class="form-group">
+				  <div class="col-lg-10 col-lg-offset-2">
+					<button type="reset" class="btn btn-default">Cancel</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				  </div>
+				</div>
+			  </fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

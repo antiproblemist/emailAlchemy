@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load staticfiles %}
+
+{% block title %}Dashboard - emailAlchemy{% endblock %}
+
+{% block auth_buttons %}
+	{% if is_authenticated %}
+		<a class="btn btn-default" href="/logout">Logout</a>
+	{% else %}
+		<a class="btn btn-default">Signup</a>
+	{% endif %}
+{% endblock %}
+
+{% block body-content %}
+<div class="container-fluid">
+	<div clas="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+			  <div class="panel-heading">
+				<h3 class="panel-title">Dashboard</h3>
+			  </div>
+			  <div class="panel-body">
+				<div class="row">
+					<div class="col-md-4">
+						<ul class="list-group">
+							{% if uemails %}								
+								{% for ue in uemails %}
+									<li class="list-group-item{% if ue.id == sue %} active{% endif %}">
+										<a href="/dashboard/{{ue.id}}"{% if ue.id == sue %} style="color:white;"{% endif %}>{{ue.email}}</a>
+										<span style="float:right;">
+											
+											<a href="/spamalyze/{{ue.id}}" class="btn btn-warning btn-xs">Spamalyze</a>
+											<a href="/deleteemail/{{ue.id}}" class="btn btn-danger btn-xs">X</a>
+										</span>
+									</li>
+								{% endfor %}
+							{% endif %}
+							<li class="list-group-item">			
+								<a href="/addnewemail">Add New Email</a>
+							</li>
+						</ul>
+					</div>
+					<div class="col-md-8">
+						<div class="list-group">
+							{% if selemails %}
+								{% for email in selemails %}
+								  <li class="list-group-item">
+									{% if email.isSpam and not email.whitelist or email.blacklist %}																		
+									<a href="/whitelist/{{email.id}}" class="btn btn-danger btn-xs" style="float:right;">Not Spam</a>
+									{% else %}
+									<a href="/blacklist/{{email.id}}" class="btn btn-warning btn-xs" style="float:right;">Mark Spam</a>
+									{% endif %}
+									<h4 class="list-group-item-heading"><a href="/read/{{email.id}}" target="_blank">{% if email.subject %}{{email.subject}}{% else %}No Subject in Email{% endif %}</a></h4>
+									<p class="list-group-item-text"{% if email.isSpam and not email.whitelist or email.blacklist %} style="color:red;text-decoration:none;"{% endif %}><b>Sender: </b>{{email.fromEmail}}&nbsp;&nbsp;&nbsp;&nbsp;<b>Sender IP:</b> {{email.senderip}}</p>
+								  </li>
+								{% endfor %}
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			  </div>
+			</div>
+		</div>
+	
+	</div>
+</div>
+{% endblock %}
