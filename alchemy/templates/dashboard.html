@@ -21,7 +21,7 @@
 			  </div>
 			  <div class="panel-body">
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-5">
 						<ul class="list-group">
 							{% if uemails %}								
 								{% for ue in uemails %}
@@ -29,7 +29,7 @@
 										<a href="/dashboard/{{ue.id}}"{% if ue.id == sue %} style="color:white;"{% endif %}>{{ue.email}}</a>
 										<span style="float:right;">
 											
-											<a href="/spamalyze/{{ue.id}}" class="btn btn-warning btn-xs">Spamalyze</a>
+											<a href="/spamalyze/{{ue.id}}" class="btn btn-warning btn-xs">S</a>
 											<a href="/deleteemail/{{ue.id}}" class="btn btn-danger btn-xs">X</a>
 										</span>
 									</li>
@@ -40,7 +40,7 @@
 							</li>
 						</ul>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-7">
 						<div class="list-group">
 							{% if selemails %}
 								{% for email in selemails %}
