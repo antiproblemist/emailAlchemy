@@ -78,10 +78,10 @@ class emailProcess(object):
 				retMessagesDisect['rawMsg'] = message
 				retMessagesDisect['hash'] = hashlib.md5(str(message)).hexdigest()
 				
-				self.makedir_p(getattr(settings, 'MEDIA_ROOT', None) + '\\' + str(folderid) + '\\')
+				'''self.makedir_p(getattr(settings, 'MEDIA_ROOT', None) + '\\' + str(folderid) + '\\')
 				file = open(getattr(settings, 'MEDIA_ROOT', None) + '\\' + str(folderid) + '\\' + str(retMessagesDisect['hash']) + '.eml', 'w')
 				file.write(str(message))
-				file.close()
+				file.close()'''
 				
 				retMessages[str(i)] = retMessagesDisect
 			pop_conn.quit()
