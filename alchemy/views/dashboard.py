@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from alchemy.models import *
+from django.http import HttpResponseRedirect
 
 def dashboard(request):
 	context = {}
 	if not request.user.is_authenticated():	
-		return render(request, 'index.html')
+		return HttpResponseRedirect('/')
 	else:
 		context['is_authenticated'] = True
 
