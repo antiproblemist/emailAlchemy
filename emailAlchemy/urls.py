@@ -19,17 +19,17 @@ from alchemy.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-	url(r'^$', 'alchemy.views.index.index'),
-	url(r'^signup/$', 'alchemy.views.signup.signup'),
-	url(r'^dashboard/$', 'alchemy.views.dashboard.dashboard'),
-	url(r'^dashboard/(?P<selecteduemail>[0-9]+)$', 'alchemy.views.showUserSelectedEmails.showUserSelectedEmails'),
-	url(r'^read/(?P<reademail>[0-9]+)$', 'alchemy.views.reademail.reademail'),
-	url(r'^addnewemail/$', 'alchemy.views.addNewEmail.addNewEmail'),
-	url(r'^deleteemail/(?P<deluseremail>[0-9]+)$', 'alchemy.views.delUserEmail.delUserEmail'),
-	url(r'^spamalyze/(?P<selecteduemail>[0-9]+)$', 'alchemy.views.spamScore.spamScore'),
-	url(r'^whitelist/(?P<whiteemail>[0-9]+)$', 'alchemy.views.whitelist.whitelist'),
-	url(r'^blacklist/(?P<blackemail>[0-9]+)$', 'alchemy.views.blacklist.blacklist'),
-	url(r'^logout/$', 'alchemy.views.logout.logout_view'),
+	url(r'^$', index),
+	url(r'^signup/$', signup),
+	url(r'^dashboard/$', dashboard),
+	url(r'^dashboard/(?P<selecteduemail>[0-9]+)$', showUserSelectedEmails),
+	url(r'^read/(?P<reademail>[0-9]+)$', reademail),
+	url(r'^addnewemail/$', addNewEmail),
+	url(r'^deleteemail/(?P<deluseremail>[0-9]+)$', delUserEmail),
+	url(r'^spamalyze/(?P<selecteduemail>[0-9]+)$', spamScore),
+	url(r'^whitelist/(?P<whiteemail>[0-9]+)$', whitelist),
+	url(r'^blacklist/(?P<blackemail>[0-9]+)$', blacklist),
+	url(r'^logout/$', logout_view),
 ]
 
 

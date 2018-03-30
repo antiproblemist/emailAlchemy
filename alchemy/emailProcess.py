@@ -4,7 +4,8 @@ from django.http import HttpResponseRedirect
 from django.conf import settings
 import re
 import hashlib
-from dateutil.parser import parse, tz
+from dateutil.parser import parse
+from dateutil.tz import tzlocal
 from datetime import datetime, tzinfo
 import os, os.path
 
@@ -71,7 +72,7 @@ class emailProcess(object):
 				retMessagesDisect['to'] = self.extractEmail(str(message['to']))
 				retMessagesDisect['subject'] = message['subject']
 				msgDate = parse(message['date'])
-				to_zone = tz.tzlocal()
+				to_zone = tzlocal()
 				msgDate = msgDate.replace(tzinfo=to_zone)
 				retMessagesDisect['date'] = msgDate
 				retMessagesDisect['ip'] = self.extractIP(message['received'])
