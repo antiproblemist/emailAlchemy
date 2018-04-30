@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from alchemy.models import *
+from django.db.models import F
 
 
 def whitelist(request, whiteemail):
@@ -11,12 +12,8 @@ def whitelist(request, whiteemail):
 	email2whitelist = get_object_or_404(popEmails, id=whiteemail)
 	
 	if request.method == "POST":
-		addressInSpam = spamAddress.objects.get(emailAddress=str(email2whitelist.fromEmail).lower())
-		if addressInSpam.notSpamVotes:
-			addressInSpam.notSpamVotes += 1
-		else:
-			addressInSpam.notSpamVotes = 1
-		addressInSpam.save()
+		addressInSpam = spamAddress.objects.filter(emailAddress__iexact=email2whitelist.fromEmail)\
+		.update(notSpamVotes=F('notSpamVotes')+1)
 		
 		if email2whitelist.blacklist:
 			email2whitelist.blacklist = False
